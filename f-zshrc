@@ -55,7 +55,7 @@ ZSH_THEME="af-magic"
 # Would you like to use another custom folder than $ZSH/custom?
 # 
 #
-ZSH_CUSTOM=/home/ferran/workspace/ftools/foh-my-zsh
+ZSH_CUSTOM=/home/ferranvm/workspace/ftools/foh-my-zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -95,9 +95,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/ferran/.sdkman"
-[[ -s "/home/ferran/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ferran/.sdkman/bin/sdkman-init.sh"

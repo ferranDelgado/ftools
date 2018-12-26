@@ -2,7 +2,7 @@
 source basic.sh
 
 function installBasics() {
-	tools=(git unzip zip)
+	tools=(terminator vim unzip zip)
 
 	for i in ${tools[@]}; do
 		echo "install ${i}"

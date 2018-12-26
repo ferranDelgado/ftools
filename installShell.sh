@@ -2,6 +2,7 @@
 curDir="$(pwd)"
 
 function checkSuccess() {
+
 	if [ $? -ne 0 ]; then
 		echo "Last command hasn't success"
 	fi
@@ -24,6 +25,9 @@ function createRcScript() {
 
 }
 
+eco "Installing curl"
+sudo apt-get install curl
+
 eco "Installing Zsh ..."
 sudo apt-get install zsh
 
@@ -37,6 +41,7 @@ eco "Installing Oh my zsh"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+checkSuccess
 createRcScript
 
 eco "Zsh and Oh my shell installed"
