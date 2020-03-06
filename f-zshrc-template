@@ -63,6 +63,7 @@ ZSH_CUSTOM=__CUSTOM_ZSH_PATH__
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  ftools
 )
 
 source $ZSH/oh-my-zsh.sh
