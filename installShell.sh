@@ -5,6 +5,7 @@ function checkSuccess() {
 
 	if [ $? -ne 0 ]; then
 		echo "Last command hasn't success"
+		exit 1
 	fi
 
 }
@@ -17,11 +18,12 @@ function createRcScript() {
 	eco "Creating .zshrc file"				
 	local curDir=$(pwd)
 	local path="$curDir/foh-my-zsh"
-	sed -E "s@__CUSTOM_ZSH_PATH__@$path@g" f-zshrc-template  > f-zshrc
+	sed -i '10 i\ZSH_CUSTOM=$path' ~/.zshrc
+
+	local line=$(grep -n plugins= .zshrc | grep -v "#" | awk -F ":" '{print $1}' | head -n 1)
+	sed -i '$line i\plugins=(ftools)' ~/.zshrc
+
 	checkSuccess
-	rm -f ~/.zshrc
-	ln -s $curDir/f-zshrc ~/.zshrc
-	eco ".zshrc file created"
 
 }
 
@@ -40,9 +42,6 @@ eco "Zsh Installed $(zsh --version)"
 eco "Installing Oh my zsh"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-checkSuccess
-createRcScript
 
 eco "Zsh and Oh my shell installed"
 eco "Reboot terminal or run source ~/.zshrc"
