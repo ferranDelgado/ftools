@@ -12,5 +12,4 @@ sed -i "$line i\ZSH_CUSTOM=$path" ~/.zshrc
 
 eco "Setting up custom plugins"				
 line=$(grep -n plugins= ~/.zshrc | grep -v "#" | awk -F ":" '{print $1}' | head -n 1)
-line=$((line+1))
-sed -i "$line i\plugins=(ftools)" ~/.zshrc
+sed -i "$line s/)/ ftool)/g" ~/.zshrc
