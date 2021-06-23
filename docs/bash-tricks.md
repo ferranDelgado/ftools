@@ -1,5 +1,23 @@
 # Scripting tricks and things that I always forget
 
+## Directories and files
+
+### Check folder exists with if else
+```bash
+if [ -d "/path/to/dir" ] 
+then
+    echo "Directory /path/to/dir exists." 
+else
+    echo "Error: Directory /path/to/dir does not exists."
+fi
+```
+
+### Create folder if it doesn't exists
+
+```bash
+[ ! -d $versions_folder ] && mkdir -p $versions_folder
+``` 
+
 ## Read arguments
 ### Value or error
 ```bash
@@ -36,6 +54,25 @@ fi
       ;;
   esac
 ```
+
+### Switch on arguments loop
+```bash
+for param in "$@" 
+do
+    case $param in
+        --full-name | --full | -f)
+            fullname=true
+            ;;
+        --quiet | -q)
+            quiet=true
+            ;;
+        *)
+            input=$param
+            ;;
+    esac
+done
+```
+
 ## Read and wait for user input
 ```bash
 read varname
