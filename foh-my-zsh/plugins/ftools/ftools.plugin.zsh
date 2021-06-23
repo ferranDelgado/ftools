@@ -3,3 +3,5 @@ function duf(){
 }
 
 alias bigFiles="duf /home"
+
+alias git_clean_merged="git --no-pager branch --merged master | grep -v master > /tmp/git_clean && vim /tmp/git_clean && cat /tmp/git_clean | xargs git branch -D | rm -rf /tmp/git_clean"
