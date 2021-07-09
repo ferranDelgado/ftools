@@ -1,9 +1,13 @@
 #!/bin/bash
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 versions_folder="$HOME/.terraform.versions"
 version_folder="/dev/null"
 
 print_error() {
-    echo "ERROR: $1"
+    printf "${RED}ERROR: $1 ${NC}\n"
 }
 
 list_versions() {
@@ -12,9 +16,7 @@ list_versions() {
 
 check_version_exists() {
     echo "Checking version $1"
-    if curl https://releases.hashicorp.com/terraform/ -s | grep -o 'terraform_[0-9.]*<' | grep -o '[0-9.]*' | sort | uniq | grep "$1" -q; then
-        echo "Found"
-    else
+    if ! curl https://releases.hashicorp.com/terraform/ -s | grep -o 'terraform_[0-9.]*<' | grep -o '[0-9.]*' | sort | uniq | grep "$1" -q; then        
         print_error "version [$1] not found"
         exit 1
     fi
@@ -36,8 +38,12 @@ link() {
     run_arg "ln -s ${version_folder}/terraform ${versions_folder}/current"
 }
 
+link_bin() {
+    printf "\nRemember to creat link in the bin folder \n\t ${YELLOW}ln -s ${versions_folder}/current /usr/bin/terraform ${NC}\n"    
+}
+
 run_arg() {
-    echo $1
+    printf "${RED} Cmd: ${NC}$1\n"
     eval $1
 }
 
@@ -55,6 +61,7 @@ install() {
         download $version
     fi
     link
+    link_bin
 }
 
 help() {
