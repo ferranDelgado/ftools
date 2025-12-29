@@ -1,0 +1,14 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	pr = "!open \"http://github.com/$(git remote -v|sed -e '/^origin/!d' -e '/(push)$/!d' -e 's|^.*github\\.com[:/]\\([^. ]*\\).*$|\\1|')/pull/new/$(git rev-parse --abbrev-ref HEAD)\""
+	b = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	fap = fetch --all --prune
+	pf = "!sh -c 'git push origin \"$(git rev-parse --abbrev-ref HEAD)\" --force-with-lease' -"
+[core]
+	editor = vim
+[pull]
+	rebase = true
+
+[user]
+	name = Ferran
+    email = ferran@delgado.com
