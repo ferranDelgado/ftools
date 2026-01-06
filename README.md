@@ -1,4 +1,4 @@
-# fTools 🔧
+# fTools 🔧 (My dotfiles)
 
 A small collection of scripts I use to bootstrap my development workstation on Debian/Ubuntu-based systems. These scripts automate installing common packages, developer tools, shell configuration, and language runtimes.
 
