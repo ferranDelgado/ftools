@@ -49,3 +49,6 @@ if [ ${#BACKUPS[@]} -gt 0 ]; then
 else
     info "No existing zsh config files were backed up."
 fi
+
+info "Dotfiles setup complete."
+warning "Please run 'source ~/.zshrc' or restart your terminal to apply changes."

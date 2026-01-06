@@ -38,3 +38,8 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Go configuration added by installGo.sh
+export PATH="/usr/local/go/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"

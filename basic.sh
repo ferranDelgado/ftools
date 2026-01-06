@@ -31,6 +31,11 @@ info() {
 	printf "%b %s\n" "${C_GREEN}[INFO]${C_RESET}" "$*"
 }
 
+warn() {
+	# Print warning message in yellow to stdout
+	printf "%b %s\n" "${C_YELLOW}[WARN]${C_RESET}" "$*"
+}
+
 warning() {
 	# Print warning message in yellow to stdout
 	printf "%b %s\n" "${C_YELLOW}[WARN]${C_RESET}" "$*"
