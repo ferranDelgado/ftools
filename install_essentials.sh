@@ -9,11 +9,13 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' 
 
+
 # --- 1. The Essentials List ---
 APPS=("curl" "vim" "git" "htop" "unzip" "zsh" "terminator")
 
 # --- 2. Identity Configuration Check ---
-USER_EMAIL=$(git config --global user.email)
+USER_EMAIL=$(git config --global user.email|| true)
+
 if [ -z "$USER_EMAIL" ]; then
     printf "${BLUE}==>${NC} Enter the email for GitHub: "
     read USER_EMAIL < /dev/tty
@@ -22,7 +24,7 @@ else
     printf "${GREEN}✔ Using existing Git email: ${NC}%s\n" "$USER_EMAIL"
 fi
 
-USER_NAME=$(git config --global user.name)
+USER_NAME=$(git config --global user.name|| true)
 if [ -z "$USER_NAME" ]; then
     printf "${BLUE}==>${NC} Enter your name for Git: "
     read USER_NAME < /dev/tty
@@ -32,7 +34,7 @@ else
 fi
 
 # Check for WORKSPACE env var
-if [ -n "$WORKSPACE" ]; then
+if [ -n "${WORKSPACE:-}" ]; then
     CLONE_DIR="$WORKSPACE"
     printf "${GREEN}✔ Using WORKSPACE environment variable: ${NC}%s\n" "$CLONE_DIR"
 else
