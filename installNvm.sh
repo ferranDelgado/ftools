@@ -10,7 +10,7 @@ curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh" 
 if [ -s "$HOME/.nvm/nvm.sh" ]; then
     source "$HOME/.nvm/nvm.sh"
 else
-    echo "Error: could not source './.zshrc' or '$HOME/.nvm/nvm.sh' - nvm is not available" >&2
+    echo "Error: could not source '$HOME/.nvm/nvm.sh' - nvm is not available" >&2
     exit 1
 fi
 nvm install --lts

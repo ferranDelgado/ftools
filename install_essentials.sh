@@ -11,7 +11,7 @@ NC='\033[0m'
 
 
 # --- 1. The Essentials List ---
-APPS=("curl" "vim" "git" "htop" "unzip" "zsh" "terminator")
+APPS=("curl" "vim" "git" "htop" "unzip" "zsh" "terminator" "make" "jq" )
 
 # --- 2. Identity Configuration Check ---
 USER_EMAIL=$(git config --global user.email|| true)
