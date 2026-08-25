@@ -8,13 +8,17 @@
 	editor = vim
 [pull]
 	rebase = true
-
 [user]
 	name = Ferran
-    email = ferran@delgado.com
+	email = ferran@delgado.com
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig-work
+[includeIf "gitdir:~/personal/"]
+	path = ~/.gitconfig-personal

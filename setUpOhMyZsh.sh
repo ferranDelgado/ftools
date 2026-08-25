@@ -39,6 +39,8 @@ ln -nfs "$PWD/zsh_customizations" "$HOME/zsh_customizations"
 
 # gitconfig
 ln -nfs "$PWD/.gitconfig" "$HOME/.gitconfig"
+ln -nfs "$PWD/.gitconfig-work" "$HOME/.gitconfig-work"
+ln -nfs "$PWD/.gitconfig-personal" "$HOME/.gitconfig-personal"
 
 # Summary of backups
 if [ ${#BACKUPS[@]} -gt 0 ]; then
