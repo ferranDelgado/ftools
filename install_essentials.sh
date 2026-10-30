@@ -108,6 +108,31 @@ else
     ssh-add "$SSH_KEY_PATH" 2> /dev/null
 fi
 
+# --- 5b. Generate Work SSH Key (used by ~/.gitconfig-work) ---
+WORK_SSH_KEY_PATH="$HOME/.ssh/id_ed25519_work"
+if [ ! -f "$WORK_SSH_KEY_PATH" ]; then
+    printf "${BLUE}==>${NC} Enter the email for the work GitHub account (leave empty to skip): "
+    read WORK_EMAIL < /dev/tty
+    if [ -n "$WORK_EMAIL" ]; then
+        printf "${YELLOW}Generating work Ed25519 SSH key...${NC}\n"
+        ssh-keygen -t ed25519 -C "$WORK_EMAIL" -f "$WORK_SSH_KEY_PATH" -N ""
+
+        printf "\n${GREEN}-------------------------------------------------------${NC}\n"
+        printf "${YELLOW}ACTION REQUIRED: Copy the key below to your WORK GitHub account:${NC}\n"
+        printf "Settings -> SSH and GPG keys -> New SSH key\n"
+        printf "${GREEN}-------------------------------------------------------${NC}\n\n"
+        cat "${WORK_SSH_KEY_PATH}.pub"
+        printf "\n${GREEN}-------------------------------------------------------${NC}\n"
+
+        printf "${YELLOW}Once you have added the key to GitHub, press [ENTER] to continue...${NC}"
+        read IGNORE < /dev/tty
+    else
+        printf "${YELLOW}Skipping work SSH key.${NC}\n"
+    fi
+else
+    printf "${GREEN}✔ Work SSH key already exists.${NC}\n"
+fi
+
 # --- 6. Clone Repository ---
 FULL_PATH=$(eval echo "$CLONE_DIR")
 mkdir -p "$FULL_PATH"
