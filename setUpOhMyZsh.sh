@@ -24,6 +24,19 @@ backup_file() {
     fi
 }
 
+# create a symlink only if it does not already exist; back up a regular file in the way
+link_if_missing() {
+    src="$1"
+    dest="$2"
+    if [ -L "$dest" ]; then
+        info "Link '$dest' already exists -> '$(readlink "$dest")'. Skipping."
+        return
+    fi
+    backup_file "$dest" "${dest}.backup"
+    info "Linking '$dest' -> '$src'"
+    ln -s "$src" "$dest"
+}
+
 backup_file "$HOME/.zshrc" "$HOME/.zshrc.backup"
 backup_file "$HOME/.vimrc" "$HOME/.vimrc.backup"
 backup_file "$HOME/.gitconfig" "$HOME/.gitconfig.backup"
@@ -39,8 +52,8 @@ ln -nfs "$PWD/zsh_customizations" "$HOME/zsh_customizations"
 
 # gitconfig
 ln -nfs "$PWD/.gitconfig" "$HOME/.gitconfig"
-ln -nfs "$PWD/.gitconfig-work" "$HOME/.gitconfig-work"
-ln -nfs "$PWD/.gitconfig-personal" "$HOME/.gitconfig-personal"
+link_if_missing "$PWD/.gitconfig-work" "$HOME/.gitconfig-work"
+link_if_missing "$PWD/.gitconfig-personal" "$HOME/.gitconfig-personal"
 
 # Summary of backups
 if [ ${#BACKUPS[@]} -gt 0 ]; then
