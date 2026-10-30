@@ -4,6 +4,8 @@
 	b = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	fap = fetch --all --prune
 	pf = "!sh -c 'git push origin \"$(git rev-parse --abbrev-ref HEAD)\" --force-with-lease' -"
+	r = rebase -i origin/master
+	cm = !b=$(git symbolic-ref --short refs/remotes/origin/HEAD | sed \"s|origin/||\") && git checkout \"$b\" && git pull origin \"$b\"
 [core]
 	editor = vim
 [pull]

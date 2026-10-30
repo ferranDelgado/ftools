@@ -39,6 +39,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/usr/local/go/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/.tfenv/bin:$PATH"
 
 # Load private/local overrides if present (not tracked in git)
 [ -f "$HOME/.zshrc_private" ] && source "$HOME/.zshrc_private"
@@ -47,3 +48,6 @@ export PATH="$GOPATH/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
